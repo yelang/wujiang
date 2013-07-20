@@ -1,0 +1,28 @@
+<node>
+    <source_datasource>
+        <connection_url>
+            jdbc:oracle:thin:@(description=(address_list=(address=(protocol=tcp)(host=127.0.0.1)(port=1521)))(connect_data=(service_name=orcl)))
+            <!--
+              jdbc:oracle:thin:@(description=(address_list=(address=(protocol=tcp)(host=127.0.0.1)(port=1521))(address=(protocol=tcp)(host=192.168.0.123)(port=1521))(load_balance=yes))(connect_data=(service_name=orcl)))
+            -->
+        </connection_url>
+        <driver_class>oracle.jdbc.driver.OracleDriver</driver_class>
+        <user_name>ZZRK2004</user_name>
+        <password>88923678</password>
+        <encrypt>false</encrypt>
+    </source_datasource>
+    <dest_datasource>
+        <connection_url>
+            jdbc:oracle:thin:@(description=(address_list=(address=(protocol=tcp)(host=127.0.0.1)(port=1521)))(connect_data=(service_name=orcl)))
+        </connection_url>
+        <driver_class>oracle.jdbc.driver.OracleDriver</driver_class>
+        <user_name>ZZRK2004_JHK</user_name>
+        <password>123456</password>
+        <encrypt>false</encrypt>
+    </dest_datasource>
+
+    <ruleFile name="rule.xml">
+        <table>
+        </table>
+    </ruleFile>
+</node>
