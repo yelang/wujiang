@@ -1,0 +1,30 @@
+apply plugin: 'idea'
+apply plugin: 'groovy'
+apply plugin: 'application'
+apply plugin: 'maven'
+version = '1.0'
+mainClassName = 'net.xinjumin.wujiang.Wujiang'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    mavenRepo urls: ['http://repository.jboss.org/maven2/']
+}
+
+dependencies {
+    groovy 'org.codehaus.groovy:groovy-all:2.1.6'
+    compile 'com.oracle:ojdbc6:11.2.0.1.0'
+    compile 'org.codehaus.gpars:gpars:1.0.0'
+    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.5'
+    compile 'org.apache.ant:ant:1.8.2'
+    testCompile 'junit:junit:4.11'
+}
+
+task uberjar(type: Jar, dependsOn: [':compileJava', ':compileGroovy']) {
+    from files(sourceSets.main.output.classesDir)
+    from configurations.runtime.asFileTree.files.collect { zipTree(it) }
+
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
